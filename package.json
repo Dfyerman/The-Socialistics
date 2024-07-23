@@ -1,0 +1,17 @@
+{
+  "name": "the-socialists",
+  "version": "1.0.0",
+  "description": "Database Api that uses a NoSQL database.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "seed": "node utils/seed.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  }
+}
