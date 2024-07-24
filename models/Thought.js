@@ -16,12 +16,26 @@ const thoughtSchema = new Schema(
         type: String,
         required: true,
        },
-       reactions: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'reactionSchema',
+       reactions: [{
+        reactionId: {
+          type: String,
+          required: true
         },
-       ],
+        reactionBody: {
+          type: String,
+          required: true,
+          maxlength: 280
+        },
+        username: {
+          type: String,
+          required: true
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now,
+          get: (createdAt) => dateFormat(createdAt) // You can define a function like dateFormat to format the timestamp
+        },
+      }]
     },
     {
         toJSON: {
@@ -32,26 +46,7 @@ const thoughtSchema = new Schema(
 );
 
 
-const reactionSchema = new Schema({
-  reactionId: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId()
-  },
-  reactionBody: {
-    type: String,
-    required: true,
-    maxlength: 280
-  },
-  username: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (createdAt) => dateFormat(createdAt) // You can define a function like dateFormat to format the timestamp
-  }
-});
+
 
 thoughtSchema
         .virtual('reactionCount')
